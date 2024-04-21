@@ -1,0 +1,33 @@
+<ng-container *ngIf="pokemon">
+	<div class="pokemon-card">
+		<div class="pokemon-card___left-side">
+			<div
+				class="pokemon-name"
+				(click)="onClick.emit(pokemon)">
+				{{ pokemon.name | titlecase }}
+			</div>
+			<div class="pokemon-types">
+				<div
+					*ngFor="let type of pokemon.types"
+					class="pokemon-type">
+					{{ type.name | uppercase }}
+				</div>
+			</div>
+			<div class="pokemon-favorite">
+				<input
+					id="star"
+					class="star"
+					type="checkbox"
+					[(ngModel)]="pokemon.isFavorite"
+					(change)="onChange()" />
+			</div>
+		</div>
+		<div
+			class="pokemon-card___right-side"
+			(click)="onClick.emit(pokemon)">
+			<img
+				[src]="pokemon.imageUrl"
+				alt="Artwork" />
+		</div>
+	</div>
+</ng-container>

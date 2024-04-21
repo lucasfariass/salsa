@@ -1,0 +1,87 @@
+<ng-container *ngIf="pokemon">
+	<div class="pokemon-details-container">
+		<div class="pokemon-details-back">
+			<a
+				class="button-back"
+				(click)="goBack()">
+				<svg
+					width="26"
+					height="26"
+					fill="currentColor"
+					viewBox="0 0 16 16">
+					<path
+						fill-rule="evenodd"
+						d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+				</svg>
+			</a>
+		</div>
+		<div class="pokemon-details-card">
+			<div class="pokemon-details-card-split">
+				<div class="pokemon-details-card-split___left-side">
+					<div class="pokemon-name">{{ pokemon.name | titlecase }}</div>
+					<div class="pokemon-types">
+						<div
+							*ngFor="let type of pokemon?.types"
+							class="pokemon-type">
+							{{ type?.name | uppercase }}
+						</div>
+					</div>
+					<div class="pokemon-attributes">
+						<ul>
+							<li>
+								<span>Experience</span>
+								<span>{{ pokemon.experience }}</span>
+							</li>
+							<li>
+								<span>Height</span>
+								<span>{{ pokemon.height }} m</span>
+							</li>
+							<li>
+								<span>Weight</span>
+								<span>{{ pokemon.weight }} kg</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="pokemon-evolutions">
+						<div
+							*ngFor="let evolution of pokemon?.evolutions"
+							class="pokemon-evolutions___img-container"
+							(click)="goToDetails(evolution.id)">
+							<img
+								[title]="evolution.name | titlecase"
+								[src]="evolution.url"
+								alt="Artwork" />
+						</div>
+					</div>
+				</div>
+				<div class="pokemon-details-card-split___right-side">
+					<img
+						[src]="pokemon.imageUrl"
+						alt="Artwork" />
+				</div>
+			</div>
+			<div class="pokemon-details-stats">
+				<div
+					*ngFor="let stat of pokemon.stats"
+					class="pokemon-stats-row">
+					<div class="pokemon-details-stats___name">
+						<h5>{{ stat.name | titlecase }}</h5>
+					</div>
+					<div class="pokemon-details-stats___progress-bar">
+						<div class="progress-bar">
+							<div
+								class="progress-bar-fill"
+								role="progressbar"
+								[style.width]="stat.value + '%'"
+								aria-valuemin="0"
+								aria-valuemax="100">
+								<b>{{ stat.value }}</b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ng-container>

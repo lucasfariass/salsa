@@ -1,0 +1,11 @@
+<div
+	class="container"
+	(sltInfiniteScroll)="loadMore()">
+	<div
+		*ngFor="let pokemon of pokemons"
+		class="card-container">
+		<slt-poke-card
+			[pokemon]="pokemon"
+			(onClick)="goToDetails($event)"></slt-poke-card>
+	</div>
+</div>
